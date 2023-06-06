@@ -23,7 +23,7 @@ let opcion = prompt(`Que accion desea realizar
 3 - Recuento de stock`);
 
 if(opcion == AGREGAR){
-    tipoItem = prompt(`Que item desea agregar
+    tipoItem = prompt(`Que item desea AGREGAR
     Monitor
     Teclado
     Mouse
@@ -31,7 +31,7 @@ if(opcion == AGREGAR){
     cantidadItem = parseInt(prompt(`Indique cantidad`));
     agregarItem(tipoItem,cantidadItem);
 }else if(opcion == QUITAR){
-    tipoItem = prompt(`Que item desea agregar
+    tipoItem = prompt(`Que item desea REMOVER
     Monitor
     Teclado
     Mouse
