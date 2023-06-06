@@ -14,6 +14,7 @@ let cantidadItem;
 let appOn = true;
 
 do{
+    
 alert(`Bievenido a la app de stock`);
 
 let opcion = prompt(`Que accion desea realizar
@@ -27,7 +28,7 @@ if(opcion == AGREGAR){
     Teclado
     Mouse
     Gabiente`);
-    cantidadItem = prompt(`Indique cantidad`);
+    cantidadItem = parseInt(prompt(`Indique cantidad`));
     agregarItem(tipoItem, cantidadItem);
 }else if(opcion == QUITAR){
     tipoItem = prompt(`Que item desea agregar
@@ -35,7 +36,7 @@ if(opcion == AGREGAR){
     Teclado
     Mouse
     Gabiente`);
-    cantidadItem = prompt(`Indique cantidad`);
+    cantidadItem = parseInt(prompt(`Indique cantidad`));
     quitarItem(tipoItem,cantidadItem);
 }else{
     tipoItem = prompt(`Que item desea mostrar el stock
@@ -46,14 +47,12 @@ if(opcion == AGREGAR){
     recuentoStock(tipoItem);
 }
 
-continuidadApp = prompt(`Desea realizar otra accion? Si/No`)
-if(continuidadApp !== 'Si' ){
+let continuidadApp = prompt(`Desea realizar otra accion? Si/No`);
+if(continuidadApp !== 'Si'){
     appOn = false;
 }
 
-}while(appOn = true);
-
-
+}while(appOn == true);
 
 
 
