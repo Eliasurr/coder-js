@@ -24,26 +24,26 @@ let opcion = prompt(`Que accion desea realizar
 
 if(opcion == AGREGAR){
     tipoItem = prompt(`Que item desea AGREGAR
-    Monitor
-    Teclado
-    Mouse
-    Gabiente`);
+    monitor
+    teclado
+    mouse
+    gabinete`);
     cantidadItem = parseInt(prompt(`Indique cantidad`));
     agregarItem(tipoItem,cantidadItem);
 }else if(opcion == QUITAR){
     tipoItem = prompt(`Que item desea REMOVER
-    Monitor
-    Teclado
-    Mouse
-    Gabinete`);
+    monitor
+    teclado
+    mouse
+    gabinete`);
     cantidadItem = parseInt(prompt(`Indique cantidad`));
     quitarItem(tipoItem,cantidadItem);
 }else{
     tipoItem = prompt(`Que item desea mostrar el stock
-    Monitor
-    Teclado
-    Mouse
-    Gabiente`);
+    monitor
+    teclado
+    mouse
+    gabinete`);
     recuentoStock(tipoItem);
 }
 
