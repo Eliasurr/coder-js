@@ -29,13 +29,13 @@ if(opcion == AGREGAR){
     Mouse
     Gabiente`);
     cantidadItem = parseInt(prompt(`Indique cantidad`));
-    agregarItem(tipoItem, cantidadItem);
+    agregarItem(tipoItem,cantidadItem);
 }else if(opcion == QUITAR){
     tipoItem = prompt(`Que item desea agregar
     Monitor
     Teclado
     Mouse
-    Gabiente`);
+    Gabinete`);
     cantidadItem = parseInt(prompt(`Indique cantidad`));
     quitarItem(tipoItem,cantidadItem);
 }else{
@@ -47,10 +47,13 @@ if(opcion == AGREGAR){
     recuentoStock(tipoItem);
 }
 
-let continuidadApp = prompt(`Desea realizar otra accion? Si/No`);
-if(continuidadApp !== 'Si'){
+let continuaApp = prompt(`Desea realizar otra accion? SI / NO`)
+if(continuaApp == 'no' || continuaApp == 'NO'){
     appOn = false;
+}else{
+    appOn = true;
 }
+
 
 }while(appOn == true);
 
