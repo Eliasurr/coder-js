@@ -1,0 +1,4 @@
+.form-agregar-alumno{
+    display: flex;
+    flex-direction: column;
+}

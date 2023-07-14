@@ -4,6 +4,7 @@ class Alumno{
         this.apellido = apellido;
         this.dni = dni;
         this.edad = edad;
+        this.arrMaterias = [];
 
         this.infoAlumno =()=>{
             alert(`
