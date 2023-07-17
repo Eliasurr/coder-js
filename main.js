@@ -8,18 +8,26 @@ let appOn = false;
 let alumnos = [];
 
 const btnAgregarAlumno = document.getElementById('btnAgregarAlumno');
-const divListadoAlumns = document.getElementById('listadoAlumnos');
+const divListadoAlumnos = document.getElementById('listadoAlumnos');
 
-let nombreAlumno = document.getElementById('nombreAlumno');
-let apellidoAlumno = document.getElementById('apellidoAlumno');
-let dniAlumno = document.getElementById('dniAlumno');
-let edadAlumno = document.getElementById('edadAlumno');
-
-
-btnAgregarAlumno.addEventListener('click', agregarAlumno(nombreAlumno,apellidoAlumno,dniAlumno,edadAlumno))
+let nombreInput = document.getElementById('nombreAlumno');
+let apellidoInput = document.getElementById('apellidoAlumno');
+let dniInput = document.getElementById('dniAlumno');
+let edadInput = document.getElementById('edadAlumno');
 
 
-
+//Eventos
+btnAgregarAlumno.addEventListener('click', function(e){
+    e.preventDefault();
+    let nombreAlumno = nombreInput.value;
+    let apellidoAlumno = apellidoInput.value;
+    let dniAlumno = dniInput.value;
+    let edadAlumno = edadInput.value;
+    let nuevoAlumno = agregarAlumno(nombreAlumno,apellidoAlumno,dniAlumno,edadAlumno);
+    alumnos.push(nuevoAlumno);
+    console.log(alumnos);
+    crearTablaAlumnos();
+});
 
 
 
@@ -28,8 +36,7 @@ btnAgregarAlumno.addEventListener('click', agregarAlumno(nombreAlumno,apellidoAl
 //funciones 
 function agregarAlumno(nombre,apellido,dni,edad){
     let alumno = new Alumno(nombre,apellido,dni,edad);
-    alumnos.push(alumno)
-
+    return alumno;
 }
 
 function removerAlumno(dni){
@@ -42,4 +49,31 @@ function encontrarAlumno(dni){
     let indice = alumnos.findIndex(obj => obj.dni === dniBuscar);
     let alumnoEncontrado = alumnos[indice];
     return alumnoEncontrado;
+}
+
+function crearTablaAlumnos(){
+    divListadoAlumnos.innerHTML = ``;
+    alumnos.forEach((alumno)=>{
+        divListadoAlumnos.innerHTML = divListadoAlumnos.innerHTML + `
+        <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">DNI</th>
+            <th scope="col">Edad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>1</th>
+            <td>${alumno.nombre}</td>
+            <td>${alumno.apellido}</td>
+            <td>${alumno.dni}</td>
+          </tr>
+        </tbody>
+      </table>
+        `
+    })
 }
