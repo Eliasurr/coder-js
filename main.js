@@ -8,7 +8,7 @@ let appOn = false;
 let alumnos = [];
 
 const btnAgregarAlumno = document.getElementById('btnAgregarAlumno');
-const divListadoAlumnos = document.getElementById('listadoAlumnos');
+
 
 let nombreInput = document.getElementById('nombreAlumno');
 let apellidoInput = document.getElementById('apellidoAlumno');
@@ -32,7 +32,6 @@ btnAgregarAlumno.addEventListener('click', function(e){
 
 
 
-
 //funciones 
 function agregarAlumno(nombre,apellido,dni,edad){
     let alumno = new Alumno(nombre,apellido,dni,edad);
@@ -52,28 +51,17 @@ function encontrarAlumno(dni){
 }
 
 function crearTablaAlumnos(){
-    divListadoAlumnos.innerHTML = ``;
-    alumnos.forEach((alumno)=>{
-        divListadoAlumnos.innerHTML = divListadoAlumnos.innerHTML + `
-        <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
-            <th scope="col">DNI</th>
-            <th scope="col">Edad</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>1</th>
-            <td>${alumno.nombre}</td>
-            <td>${alumno.apellido}</td>
-            <td>${alumno.dni}</td>
-          </tr>
-        </tbody>
-      </table>
-        `
-    })
+  const bodyTable = document.getElementById('listadoAlumnos');
+  bodyTable.innerHTML = '';
+  alumnos.forEach((alumno)=>{
+    bodyTable.innerHTML += 
+    `
+    <tr>
+    <td>${alumno.nombre}</td>
+    <td>${alumno.apellido}</td>
+    <td>${alumno.dni}</td>
+    <td>${alumno.edad}</td>
+    </tr>
+    `
+  })
 }
