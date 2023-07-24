@@ -18,22 +18,35 @@ btnAgregarAlumno.addEventListener('click', function(e){
     let dniAlumno = dniInput.value;
     let edadAlumno = edadInput.value;
     let nuevoAlumno = agregarAlumno(nombreAlumno,apellidoAlumno,dniAlumno,edadAlumno);
-    alumnos.push(nuevoAlumno);
-    crearTablaAlumnos();
-    guardarAlumnoJSON();
+    actualizarArrAlumnos(nuevoAlumno)  
+    mostrarUltimoAlumno();
 });
 
-cargarListadoAlumnos();
-
-
+mostrarTodos();
 
 
 
 //funciones 
-function agregarAlumno(nombre,apellido,dni,edad){
-    let alumno = new Alumno(nombre,apellido,dni,edad);
-    return alumno;
+
+//Obtiene arreglo, si no existe lo crea.
+function obtenerArregloAlumnos(){
+  let data = localStorage.getItem('listadoAlumnos');
+  return data ? JSON.parse(data) : [];
 }
+
+//Crea un nuevo alumno y lo pushea al array en localStorage
+function agregarAlumno(nombre,apellido,dni,edad){
+  let alumno = new Alumno(nombre,apellido,dni,edad)
+  let arrAlumnos = obtenerArregloAlumnos();
+  arrAlumnos.push(alumno);
+  return arrAlumnos;
+}
+
+//Actualiza el arreglo en localStorage
+function actualizarArrAlumnos(arr){
+  localStorage.setItem('listadoAlumnos',JSON.stringify(arr));
+}
+
 
 function removerAlumno(dni){
     let dniComparar = dni;
@@ -47,42 +60,36 @@ function encontrarAlumno(dni){
     return alumnoEncontrado;
 }
 
-function guardarAlumnoJSON(){
-  let alumnosJSON = JSON.stringify(alumnos);
-  localStorage.setItem('listadoAlumnos', alumnosJSON);
+//Solo agrega la ultima entrada de inputs a la lista ya existente
+function mostrarUltimoAlumno(){
+  let cuerpoTabla = document.getElementById('listadoAlumnosTabla');
+  //Obtiene arreglo de alumnos en localStorage
+  let arrAlumnos = obtenerArregloAlumnos();
+  //Obtiene ultimo indice del arreglo
+  let ultimaEntrada = arrAlumnos[arrAlumnos.length - 1];
+  cuerpoTabla.innerHTML += `
+    <tr>
+      <td>${ultimaEntrada.nombre}</td>
+      <td>${ultimaEntrada.apellido}</td>
+      <td>${ultimaEntrada.dni}</td>
+      <td>${ultimaEntrada.edad}</td>
+    </tr>
+  `
 }
 
 
-function crearTablaAlumnos(){
-  const bodyTable = document.getElementById('listadoAlumnos');
-  bodyTable.innerHTML = '';
-  alumnos.forEach((alumno)=>{
-    bodyTable.innerHTML += 
-    `
+function mostrarTodos(){
+  let cuerpoTabla = document.getElementById('listadoAlumnosTabla');
+  let arrAlumnos = obtenerArregloAlumnos();
+  arrAlumnos.forEach(alumno => {
+    cuerpoTabla.innerHTML += `
     <tr>
-    <td>${alumno.nombre}</td>
-    <td>${alumno.apellido}</td>
-    <td>${alumno.dni}</td>
-    <td>${alumno.edad}</td>
+      <td>${alumno.nombre}</td>
+      <td>${alumno.apellido}</td>
+      <td>${alumno.dni}</td>
+      <td>${alumno.edad}</td>
     </tr>
     `
-  })
-}
-
-function cargarListadoAlumnos(){
-  let listadoAlumnosExist = localStorage.getItem('listadoAlumnos');
-  let listadoAlumnosJSON = JSON.parse(listadoAlumnosExist);
-  const bodyTable = document.getElementById('listadoAlumnos');
-  listadoAlumnosJSON.forEach((alumno)=>{
-    bodyTable.innerHTML +=
-    `
-    <tr>
-    <td>${alumno.nombre}</td>
-    <td>${alumno.apellido}</td>
-    <td>${alumno.dni}</td>
-    <td>${alumno.edad}</td>
-    </tr>
-    `
-  })
+  });
 }
 
