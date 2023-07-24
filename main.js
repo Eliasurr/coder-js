@@ -1,10 +1,4 @@
-const AGREGAR_ALUMNO = 1;
-const QUITAR_ALUMNO = 2;
-const MODIFICAR_ALUMNO = 3;
-const VER_INFORMACION = 4;
-const VER_ALUMNOS = 5;
 
-let appOn = false;
 let alumnos = [];
 
 const btnAgregarAlumno = document.getElementById('btnAgregarAlumno');
@@ -25,9 +19,12 @@ btnAgregarAlumno.addEventListener('click', function(e){
     let edadAlumno = edadInput.value;
     let nuevoAlumno = agregarAlumno(nombreAlumno,apellidoAlumno,dniAlumno,edadAlumno);
     alumnos.push(nuevoAlumno);
-    console.log(alumnos);
     crearTablaAlumnos();
+    guardarAlumnoJSON();
 });
+
+cargarListadoAlumnos();
+
 
 
 
@@ -50,6 +47,12 @@ function encontrarAlumno(dni){
     return alumnoEncontrado;
 }
 
+function guardarAlumnoJSON(){
+  let alumnosJSON = JSON.stringify(alumnos);
+  localStorage.setItem('listadoAlumnos', alumnosJSON);
+}
+
+
 function crearTablaAlumnos(){
   const bodyTable = document.getElementById('listadoAlumnos');
   bodyTable.innerHTML = '';
@@ -65,3 +68,21 @@ function crearTablaAlumnos(){
     `
   })
 }
+
+function cargarListadoAlumnos(){
+  let listadoAlumnosExist = localStorage.getItem('listadoAlumnos');
+  let listadoAlumnosJSON = JSON.parse(listadoAlumnosExist);
+  const bodyTable = document.getElementById('listadoAlumnos');
+  listadoAlumnosJSON.forEach((alumno)=>{
+    bodyTable.innerHTML +=
+    `
+    <tr>
+    <td>${alumno.nombre}</td>
+    <td>${alumno.apellido}</td>
+    <td>${alumno.dni}</td>
+    <td>${alumno.edad}</td>
+    </tr>
+    `
+  })
+}
+
