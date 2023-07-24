@@ -22,7 +22,6 @@ btnAgregarAlumno.addEventListener('click', function(e){
     mostrarUltimoAlumno();
 });
 
-mostrarTodos();
 
 
 
@@ -73,6 +72,7 @@ function mostrarUltimoAlumno(){
       <td>${ultimaEntrada.apellido}</td>
       <td>${ultimaEntrada.dni}</td>
       <td>${ultimaEntrada.edad}</td>
+      <td>edit / remove<td>
     </tr>
   `
 }
@@ -88,6 +88,7 @@ function mostrarTodos(){
       <td>${alumno.apellido}</td>
       <td>${alumno.dni}</td>
       <td>${alumno.edad}</td>
+      <td>edit / remove</td>
     </tr>
     `
   });

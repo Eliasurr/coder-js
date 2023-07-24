@@ -17,13 +17,13 @@
                 <form class="form-agregar-alumno">
                     <legend class="text-center">AGREGAR ALUMNO</legend>
                     <label for="nombre">Nombre</label>
-                    <input type="text" name="nombre" id="nombreAlumno" placeholder="Ingrese nombre alumno">
+                    <input type="text" name="nombre" id="nombreAlumno" placeholder="Ingrese nombre alumno" required>
                     <label for="apellido">Apellido</label>
-                    <input type="text" name="apellido" id="apellidoAlumno" placeholder="Ingrese apellido">
+                    <input type="text" name="apellido" id="apellidoAlumno" placeholder="Ingrese apellido" required>
                     <label for="dni">DNI</label>
-                    <input type="number" name="dni" id="dniAlumno" placeholder="Ingrese DNI">
+                    <input type="number" name="dni" id="dniAlumno" placeholder="Ingrese DNI" required>
                     <label for="edad">Edad</label>
-                    <input type="number" name="edad" id="edadAlumno" placeholder="Ingrese Edad">
+                    <input type="number" name="edad" id="edadAlumno" placeholder="Ingrese Edad" required>
                     <button class="btn btn-success mt-3" id="btnAgregarAlumno">+AGREGAR</button>
                 </form>
             </div>
@@ -37,6 +37,7 @@
                             <th scope="col">Apellido</th>
                             <th scope="col">DNI</th>
                             <th scope="col">Edad</th>
+                            <th scope="col">Acciones</th>
                           </tr>
                         </thead>
                         <tbody id="listadoAlumnosTabla">
