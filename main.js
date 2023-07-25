@@ -23,6 +23,8 @@ btnAgregarAlumno.addEventListener('click', function(e){
 });
 
 
+mostrarTodos();
+
 
 
 //funciones 
