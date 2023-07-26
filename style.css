@@ -2,3 +2,29 @@
     display: flex;
     flex-direction: column;
 }
+
+.btn-remover{
+    width: 25px;
+    height: 25px;
+    background-color: rgb(235, 1, 1);
+    text-align: center;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.btn-remover:hover{
+    cursor: pointer;
+}
+
+.btn-remover:active{
+    transform: scale(.9);
+}
+
+
+.ocultar{
+    display: none;
+}
+
+.row-botones{
+    width: 100%;
+}

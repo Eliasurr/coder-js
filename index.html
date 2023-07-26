@@ -12,20 +12,16 @@
 </head>
 <body>
     <div class="container-fluid">
+        <div class="row row-botones">
+            <div class="col-md-4 d-flex flex-row justify-content-around">
+                <button class="btn btn-success mt-2 mb-4" id="btnFormAgregar">AGREGAR</button>
+                <button class="btn btn-danger mt-2 mb-4" id="btnFormRemover">REMOVER</button>
+                <button class="btn btn-primary mt-2 mb-4" id="btnFormEditar">EDITAR</button>
+            </div>
+        </div>
         <div class="row">
-            <div class="col-md-4">
-                <form class="form-agregar-alumno">
-                    <legend class="text-center">AGREGAR ALUMNO</legend>
-                    <label for="nombre">Nombre</label>
-                    <input type="text" name="nombre" id="nombreAlumno" placeholder="Ingrese nombre alumno" required>
-                    <label for="apellido">Apellido</label>
-                    <input type="text" name="apellido" id="apellidoAlumno" placeholder="Ingrese apellido" required>
-                    <label for="dni">DNI</label>
-                    <input type="number" name="dni" id="dniAlumno" placeholder="Ingrese DNI" required>
-                    <label for="edad">Edad</label>
-                    <input type="number" name="edad" id="edadAlumno" placeholder="Ingrese Edad" required>
-                    <button class="btn btn-success mt-3" id="btnAgregarAlumno">+AGREGAR</button>
-                </form>
+            <div class="col-md-4" id="divForm">
+                
             </div>
             <div class="col-md-8">
                 <h1 class="text-center">Listado de alumnos</h1>
@@ -37,7 +33,6 @@
                             <th scope="col">Apellido</th>
                             <th scope="col">DNI</th>
                             <th scope="col">Edad</th>
-                            <th scope="col">Acciones</th>
                           </tr>
                         </thead>
                         <tbody id="listadoAlumnosTabla">
@@ -47,8 +42,14 @@
                 </div>
             </div>
         </div>
+        
     </div>
 </body>
 <script src="alumno.js"></script>
 <script src="main.js"></script>
 </html>
+
+
+
+
+

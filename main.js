@@ -1,33 +1,48 @@
 
 let alumnos = [];
 
-const btnAgregarAlumno = document.getElementById('btnAgregarAlumno');
+//botones
+const btnFormAgregar = document.getElementById('btnFormAgregar');
+const btnFormRemover = document.getElementById('btnFormRemover');
+const btnFormEditar = document.getElementById('btnFormEditar');
 
+//DOM
 
-let nombreInput = document.getElementById('nombreAlumno');
-let apellidoInput = document.getElementById('apellidoAlumno');
-let dniInput = document.getElementById('dniAlumno');
-let edadInput = document.getElementById('edadAlumno');
+//Div de formulario para acciones
+const divForm = document.getElementById('divForm');
 
 
 //Eventos
-btnAgregarAlumno.addEventListener('click', function(e){
-    e.preventDefault();
-    let nombreAlumno = nombreInput.value;
-    let apellidoAlumno = apellidoInput.value;
-    let dniAlumno = dniInput.value;
-    let edadAlumno = edadInput.value;
-    let nuevoAlumno = agregarAlumno(nombreAlumno,apellidoAlumno,dniAlumno,edadAlumno);
-    actualizarArrAlumnos(nuevoAlumno)  
-    mostrarUltimoAlumno();
-});
+
+//Evento de agregar alumno!
+btnFormAgregar.addEventListener('click', function(e){
+  e.preventDefault();
+  //Dibuja formulario para agregar alumnos 
+  dibujarFormAgregar()
+      const btnAgregarAlumno = document.getElementById('btnAgregarAlumno');
+      //Captura boton de agregar generado por JS
+      btnAgregarAlumno.addEventListener('click',function(e){
+        e.preventDefault();
+        //Captura inputs
+          let nombre = document.getElementById('nombre').value
+          let apellido = document.getElementById('apellido').value
+          let dni = document.getElementById('dni').value
+          let edad = document.getElementById('edad').value
+          //Los envia como parametros a la funcion de agregar alumno
+          let nuevoAlumno = agregarAlumno(nombre,apellido,dni,edad);
+          //Actualiza arreglo alumnos en localStorage
+          actualizarArrAlumnos(nuevoAlumno);     
+      });
+})
 
 
-mostrarTodos();
+btnFormRemover.addEventListener('click',function(){
+  dibujarFormRemover();
+})
 
 
 
-//funciones 
+//funciones
 
 //Obtiene arreglo, si no existe lo crea.
 function obtenerArregloAlumnos(){
@@ -61,38 +76,33 @@ function encontrarAlumno(dni){
     return alumnoEncontrado;
 }
 
-//Solo agrega la ultima entrada de inputs a la lista ya existente
-function mostrarUltimoAlumno(){
-  let cuerpoTabla = document.getElementById('listadoAlumnosTabla');
-  //Obtiene arreglo de alumnos en localStorage
-  let arrAlumnos = obtenerArregloAlumnos();
-  //Obtiene ultimo indice del arreglo
-  let ultimaEntrada = arrAlumnos[arrAlumnos.length - 1];
-  cuerpoTabla.innerHTML += `
-    <tr>
-      <td>${ultimaEntrada.nombre}</td>
-      <td>${ultimaEntrada.apellido}</td>
-      <td>${ultimaEntrada.dni}</td>
-      <td>${ultimaEntrada.edad}</td>
-      <td>edit / remove<td>
-    </tr>
+
+
+function dibujarFormAgregar(){
+  let formAgregar = document.createElement('form');
+  formAgregar.classList.add('d-flex','flex-column');
+  formAgregar.innerHTML = `<legend class="text-center">AGREGAR ALUMNO</legend>
+  <label for="nombre">Nombre</label>
+  <input type="text" id="nombre" required>
+  <label for="apellido">Apellido</label>
+  <input type="text" id="apellido" required>
+  <label for="dni">DNI</label>
+  <input type="number" id="dni" required>
+  <label for="edad">Edad</label>
+  <input type="number" id="edad" required>
+  <button id="btnAgregarAlumno" class="btn btn-success mt-3">Agregar alumno a lista</button>
   `
+  divForm.replaceChildren(formAgregar)
 }
 
 
-function mostrarTodos(){
-  let cuerpoTabla = document.getElementById('listadoAlumnosTabla');
-  let arrAlumnos = obtenerArregloAlumnos();
-  arrAlumnos.forEach(alumno => {
-    cuerpoTabla.innerHTML += `
-    <tr>
-      <td>${alumno.nombre}</td>
-      <td>${alumno.apellido}</td>
-      <td>${alumno.dni}</td>
-      <td>${alumno.edad}</td>
-      <td>edit / remove</td>
-    </tr>
-    `
-  });
-}
 
+function dibujarFormRemover(){
+  let formRemover = document.createElement('form');
+  formRemover.classList.add('d-flex', 'flex-column');
+  formRemover.innerHTML = `
+    <input type="number id="dniRemover" placeholder="Ingrese DNI de alumno a remover">
+    <button class="btn btn-danger mt-3" id="btnRemover">Remover alumno</button>
+  `
+  divForm.replaceChildren(formRemover);
+}
